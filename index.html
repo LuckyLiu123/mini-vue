@@ -7,6 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <div id="root">
+        <div class="c1">
+          <div title="tt1" id="id">{{ name }}</div>
+          <div title="tt2">{{ age }}</div>
+          <div title="tt3">{{ gender }}</div>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
+        </div>
+    </div>
+
+    <script src="./src/JGVue.js"></script>
+    <script>
+
+        let app = new JGVue({
+            el: "#root",
+            data: {
+                name: '张三',
+                age: 20,
+                gender: '男',
+                children: [
+                    { name: '张小一', age: 9, gender: '男' },
+                    { name: '张小二', age: 6, gender: '女' },
+                    { name: '张小三', age: 3, gender: '男' },
+                ]
+            }
+        })
+
+
+    </script>
 </body>
 </html>
