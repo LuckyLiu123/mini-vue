@@ -18,4 +18,16 @@ JGVue.prototype.createRenderFn = function(){
 
     //Vue: 将 AST + data => VNode
     //JGVue: 将带有坑的VNode + data => 带有数据的VNode
+    return function render(){
+        //将带有坑的 VNode 转换为带有数据的VNode
+        let _tmp = combine(ast, this._data);
+        return _tmp;
+    }
+}
+
+// 将 虚拟DOM 渲染到页面中: diff 算法就在这里
+JGVue.prototype.update = function(vnode){
+    //简化，直接生成 HTML DOM replaceChild 页面中
+    let realDOM = parseVNode(vnode);
+    this._parentNode.replaceChild(realDOM, document.querySelector('#root'));
 }

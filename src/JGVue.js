@@ -4,7 +4,7 @@ function JGVue(options){
     this._template = elem;
     this._parentNode = elem.parentNode;
 
-    this.initata();
+    this.initData();
 
     this.mount();
 }
