@@ -10,7 +10,10 @@ JGVue.prototype.mountComponent = function(){
         this.update(this.render());
     }
 
-    mount.call(this);    //本来应该交给 watcher 来调用
+    // mount.call(this);    //本来应该交给 watcher 来调用
+
+    // 这个 Watcher 就是全局的 Watcher，在任何一个位置都可以访问它(简化的写法)
+    new Watcher(this, mount);    //相当于这里调用来 mount
 }
 
 JGVue.prototype.createRenderFn = function(){

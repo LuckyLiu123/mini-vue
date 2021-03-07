@@ -21,7 +21,33 @@ class Watcher{
     //计算，触发 getter
     get(){
         pushTarget(this);
+
+        this.getter.call(this.vm, this.vm);   //上下文的问题解决了
+
+        popTarget();
     }
 
+    /**
+     * 执行，并判断是懒加载，还是同步执行，还是异步执行；
+     * 我们现在只考虑 异步执行(简化的是 同步执行)
+    */
+    run(){
+       this.get();
+       //在真正的 vue 中是调用 queueWatcher，来触发 nextTick 进行异步的执行
+    }
+
+    /** 对外公开的函数，用于在 属性 发生变化时触发的接口 */
+    update(){
+        this.run();
+    }
+
+    /** 清空依赖队列 */
+    cleanupDep(){
+
+    }
+
+    addDep(dep){
+        this.deps.push(dep);
+    }
 
 }
